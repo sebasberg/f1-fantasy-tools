@@ -62,12 +62,6 @@ def find_available_teams(drivers, constructors):
             if set(subset).issubset(team_combination) and calculate_price(team_combination) <= BUDGET:
                 available_teams.append(team_combination + (calculate_price(team_combination),))
 
-
-
-        #if set(drivers).issubset(combination) and calculate_price(combination, constructor) <= BUDGET:
-            # Add constructor and price to the combination tuple before adding available team to the returned list
-        #    available_teams.append(combination + (constructor, calculate_price(combination, constructor)))
-
     return available_teams
 
 def print_teams(teams):
