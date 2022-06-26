@@ -1,0 +1,11 @@
+- make it possible to not choose a constructor in find_teams function
+- add data about points scored for drivers and constructors, and add total team points to team tuple
+- sort team by points/price to maximum points for the given budget
+- support for current team and number of subs to achieve team
+- give maximum number of subs to find_teams function
+- add support for required_drivers and blacklisted_drivers and blacklisted_constructors in find_teams function
+- create own python file for constants etc.
+- create own python file for classes handling different stuff and let the main.py import classes that is handling different functionality and data storing
+- mine data automatically from fantasy webpage (drivers prices and constructors prices)
+- set up database for storing different data from fantasy
+- AI for suggesting top three teams
