@@ -1,5 +1,8 @@
 import itertools
 from constants import BUDGET
+from db_connector import DatabaseHelper
+
+db = DatabaseHelper()
 
 # Get data from files
 with open("drivers.txt") as drivers_file, open("constructors.txt") as constructors_file:
