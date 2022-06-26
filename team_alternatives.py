@@ -1,7 +1,5 @@
 import itertools
-
-BUDGET = 102.5
-CURRENT_TEAM = "current team features to be implemented so that one can calculate number of "
+from constants import BUDGET
 
 # Get data from files
 with open("drivers.txt") as drivers_file, open("constructors.txt") as constructors_file:

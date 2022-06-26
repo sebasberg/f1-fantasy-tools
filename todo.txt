@@ -1,3 +1,4 @@
+- set up database for data about drivers and constructors, create class to communicate with database and get/put data
 - add data about points scored for drivers and constructors, and add total team points to team tuple
 - sort team by points/price to maximum points for the given budget
 - support for current team and number of subs to achieve team
