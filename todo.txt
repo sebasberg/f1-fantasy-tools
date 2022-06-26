@@ -6,6 +6,6 @@
 - add support for required_drivers and blacklisted_drivers and blacklisted_constructors in find_teams function
 - create own python file for constants etc.
 - create own python file for classes handling different stuff and let the main.py import classes that is handling different functionality and data storing
-- mine data automatically from fantasy webpage (drivers prices and constructors prices)
+- mine data automatically from fantasy webpage (drivers prices and constructors prices) or create api
 - set up database for storing different data from fantasy
 - AI for suggesting top three teams
