@@ -1,4 +1,3 @@
-- make it possible to not choose a constructor in find_teams function
 - add data about points scored for drivers and constructors, and add total team points to team tuple
 - sort team by points/price to maximum points for the given budget
 - support for current team and number of subs to achieve team
