@@ -48,8 +48,15 @@ class DatabaseHelper:
         self.cursor.execute(sql, params or ())
         return self.fetchall()
 
+    def tuple_to_dict(self, query_result):
+        result_dict = {}
+        for tuple in query_result:
+            result_dict[tuple[0]] = tuple[1:]
+        return result_dict
+
     def get_drivers(self):
-        return self.query("SELECT * FROM drivers")
+        sql = "SELECT * FROM drivers"
+        return self.tuple_to_dict(self.query(sql))
 
     def get_driver_price(self, driver):
         sql = "SELECT price FROM drivers WHERE initials = ?"
@@ -59,7 +66,14 @@ class DatabaseHelper:
     def get_driver_points(self, driver):
         return
 
-db = DatabaseHelper()
-print(db.get_drivers())
-print(db.get_driver_price("VER"))
-db.close()
+    def get_constructors(self):
+        sql = "SELECT * FROM constructors"
+        return self.tuple_to_dict(self.query(sql))
+
+    def get_constructor_price(self, constructor):
+        sql = "SELECT price FROM constructors WHERE abbreviation = ?"
+        self.execute(sql, (constructor,))
+        return self.fetchone()[0]
+
+    def get_constructor_points(self, constructor):
+        return
