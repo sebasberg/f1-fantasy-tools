@@ -1,6 +1,3 @@
-- add points/price to players and constructors in database
-- implement two missing functions for returning points scored by drivers and constructors in database_helper.py
-- add function for showing top list based on most points for value
 - support for current team and number of subs to achieve team
 - give maximum number of subs to find_teams function
 - add support for required_drivers and blacklisted_drivers and blacklisted_constructors in find_teams function

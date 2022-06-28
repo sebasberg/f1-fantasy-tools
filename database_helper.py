@@ -64,7 +64,9 @@ class DatabaseHelper:
         return self.fetchone()[0]
 
     def get_driver_points(self, driver):
-        return
+        sql = "SELECT points FROM drivers WHERE initials = ?"
+        self.execute(sql, (driver,))
+        return self.fetchone()[0]
 
     def get_constructors(self):
         sql = "SELECT * FROM constructors"
@@ -76,4 +78,20 @@ class DatabaseHelper:
         return self.fetchone()[0]
 
     def get_constructor_points(self, constructor):
-        return
+        sql = "SELECT points FROM constructors WHERE abbreviation = ?"
+        self.execute(sql, (constructor,))
+        return self.fetchone()[0]
+
+    def drivers_sorted_points_price(self, reverse=True):
+        asc_desc = "DESC"
+        if not reverse:
+            asc_desc = "ASC"
+        sql = f"SELECT initials, price, points, ROUND((points / price), 1) FROM drivers ORDER BY (points / price) {asc_desc}"
+        return self.query(sql)
+
+    def constructors_sorted_points_price(self, reverse=True):
+        asc_desc = "DESC"
+        if not reverse:
+            asc_desc = "ASC"
+        sql = f"SELECT abbreviation, price, points, ROUND((points / price), 1) FROM constructors ORDER BY (points / price) {asc_desc}"
+        return self.query(sql)

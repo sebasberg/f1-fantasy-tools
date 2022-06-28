@@ -90,6 +90,29 @@ def print_teams(teams):
     for team in teams:
         print(f"{team[0]}-{team[1]}-{team[2]}-{team[3]}-{team[4]}-{team[5]}    ${team[6]}M    {team[7]} points")
 
+def print_top_driver_value(reverse=True):
+    """
+    Printing drivers sorted by points/price.
+    Parameters:
+        reverse: If reverse is set to False, the drivers are sorted in ascending order
+    """
+    with DatabaseHelper() as db:
+        drivers_sorted = db.drivers_sorted_points_price(reverse=reverse)
+    for position, driver in enumerate(drivers_sorted):
+        print(f"{position+1}. | {driver[0]} | ${driver[1]}M | {driver[2]} points | {driver[3]} points/$")
+
+def print_top_constructor_value(reverse=True):
+    """
+    Printing constructors sorted by points/price.
+    Parameters:
+        reverse: If reverse is set to False, the constructors are sorted in ascending order.
+    """
+    with DatabaseHelper() as db:
+        construcors_sorted = db.constructors_sorted_points_price(reverse)
+    for position, constructor in enumerate(construcors_sorted):
+        print(f"{position+1}. | {constructor[0]} | ${constructor[1]}M | {constructor[2]} points | {constructor[3]} points/$")
+
 
 # print_teams(find_available_teams(("PER", "SAI", "BOT",), ("RB",)))
-print_teams(sort_by_points(find_available_teams(("PER", "SAI", "BOT",), ("RB",))))
+# print_teams(sort_by_points(find_available_teams(("PER", "SAI", "BOT",), ("RB",))))
+print_top_constructor_value()
