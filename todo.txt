@@ -1,9 +1,10 @@
-- sort team by points/price to maximum points for the given budget
+- add points/price to players and constructors in database
+- implement two missing functions for returning points scored by drivers and constructors in database_helper.py
+- add function for showing top list based on most points for value
 - support for current team and number of subs to achieve team
 - give maximum number of subs to find_teams function
 - add support for required_drivers and blacklisted_drivers and blacklisted_constructors in find_teams function
-- create own python file for constants etc.
-- create own python file for classes handling different stuff and let the main.py import classes that is handling different functionality and data storing
-- mine data automatically from fantasy webpage (drivers prices and constructors prices) or create api
-- set up database for storing different data from fantasy
+- create own python file for classes handling different stuff and let the main.py (or other name for main.py) import classes that is handling different functionality and data storing
+- mine data automatically from fantasy webpage (drivers prices and constructors prices) or create api (basically find a way to update database automatically)
+- set up database so that it can store different/more data from fantasy
 - AI for suggesting top three teams

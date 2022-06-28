@@ -69,14 +69,27 @@ def find_available_teams(drivers, constructors):
 
     return available_teams
 
+def sort_by_points(teams, reverse=True):
+    """
+    Sort a list of teams in descending order by total points.
+    Parameters:
+        teams: A list of tuples, where each tuple is a team.
+        reverse: Set this to false to sort in ascending order.
+    Returns:
+        The sorted list of teams.
+    """
+    # Sort by the 7th item in team tuple
+    return sorted(teams, key=lambda x: x[7], reverse=reverse)
+
 def print_teams(teams):
     """
     Printing teams to the terminal with the current price.
     Parameters:
-        teams:  A list of tuples, where each tuple is a team with drivers, constructor, and total price.
+        teams:  A list of tuples, where each tuple is a team with drivers, constructor, total price, and total points.
     """
     for team in teams:
         print(f"{team[0]}-{team[1]}-{team[2]}-{team[3]}-{team[4]}-{team[5]}    ${team[6]}M    {team[7]} points")
 
 
-print_teams(find_available_teams(("PER", "SAI", "BOT",), ("RB",)))
+# print_teams(find_available_teams(("PER", "SAI", "BOT",), ("RB",)))
+print_teams(sort_by_points(find_available_teams(("PER", "SAI", "BOT",), ("RB",))))
