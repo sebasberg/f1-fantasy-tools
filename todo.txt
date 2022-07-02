@@ -1,7 +1,8 @@
-- support for current team and number of subs to achieve team
 - give maximum number of subs to find_teams function
-- add support for required_drivers and blacklisted_drivers and blacklisted_constructors in find_teams function
+- add support for must_be_included_drivers and blacklisted_drivers and blacklisted_constructors in find_teams function
 - create own python file for classes handling different stuff and let the main.py (or other name for main.py) import classes that is handling different functionality and data storing
+- set up database so that it can store different/more data from fantasy (ER diagram and improve database design)
 - mine data automatically from fantasy webpage (drivers prices and constructors prices) or create api (basically find a way to update database automatically)
-- set up database so that it can store different/more data from fantasy
+- save data from each race
+- show top driver in terms of points per million the last three races
 - AI for suggesting top three teams

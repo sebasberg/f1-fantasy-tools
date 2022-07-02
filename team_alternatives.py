@@ -1,5 +1,5 @@
 import itertools
-from constants import BUDGET
+from constants import CURRENT_BUDGET, CURRENT_TEAM
 from database_helper import DatabaseHelper
 
 with DatabaseHelper() as db:
@@ -29,6 +29,16 @@ def calculate_points(team):
         except:
             points += constructors_dict[member][1]
     return points
+
+def calculate_subs(team):
+    """
+    Calculates and returns the total number of subs from current team to achieve the given team.
+    """
+    subs = 0
+    for member in team:
+        if member not in CURRENT_TEAM:
+            subs += 1
+    return subs
 
 def find_available_teams(drivers, constructors):
     """
@@ -64,8 +74,8 @@ def find_available_teams(drivers, constructors):
     for team_combination in all_team_combinations:
         # If a possible subset is a subset of a team combination, and the team combination is within the budget, append to available teams
         for subset in all_subsets:
-            if set(subset).issubset(team_combination) and calculate_price(team_combination) <= BUDGET:
-                available_teams.append(team_combination + (calculate_price(team_combination), calculate_points(team_combination)))
+            if set(subset).issubset(team_combination) and calculate_price(team_combination) <= CURRENT_BUDGET:
+                available_teams.append(team_combination + (calculate_price(team_combination), calculate_points(team_combination), calculate_subs(team_combination)))
 
     return available_teams
 
@@ -88,7 +98,7 @@ def print_teams(teams):
         teams:  A list of tuples, where each tuple is a team with drivers, constructor, total price, and total points.
     """
     for team in teams:
-        print(f"{team[0]}-{team[1]}-{team[2]}-{team[3]}-{team[4]}-{team[5]}    ${team[6]}M    {team[7]} points")
+        print(f"{team[0]}-{team[1]}-{team[2]}-{team[3]}-{team[4]}-{team[5]}    ${team[6]}M    {team[7]} points    {team[8]} subs")
 
 def print_top_driver_value(reverse=True):
     """
@@ -99,7 +109,7 @@ def print_top_driver_value(reverse=True):
     with DatabaseHelper() as db:
         drivers_sorted = db.drivers_sorted_points_price(reverse=reverse)
     for position, driver in enumerate(drivers_sorted):
-        print(f"{position+1}. | {driver[0]} | ${driver[1]}M | {driver[2]} points | {driver[3]} points/$")
+        print(f"{position+1}. | {driver[0]} | ${driver[1]}M | {driver[2]} points | {driver[3]} points per $M")
 
 def print_top_constructor_value(reverse=True):
     """
@@ -110,9 +120,7 @@ def print_top_constructor_value(reverse=True):
     with DatabaseHelper() as db:
         construcors_sorted = db.constructors_sorted_points_price(reverse)
     for position, constructor in enumerate(construcors_sorted):
-        print(f"{position+1}. | {constructor[0]} | ${constructor[1]}M | {constructor[2]} points | {constructor[3]} points/$")
+        print(f"{position+1}. | {constructor[0]} | ${constructor[1]}M | {constructor[2]} points | {constructor[3]} points per $M")
 
 
-# print_teams(find_available_teams(("PER", "SAI", "BOT",), ("RB",)))
-# print_teams(sort_by_points(find_available_teams(("PER", "SAI", "BOT",), ("RB",))))
-print_top_constructor_value()
+print_teams(sort_by_points(find_available_teams(("PER", "SAI", "BOT",), ("RB",))))
