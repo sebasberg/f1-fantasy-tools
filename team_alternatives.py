@@ -40,7 +40,7 @@ def calculate_subs(team):
             subs += 1
     return subs
 
-def find_available_teams(drivers, constructors):
+def find_available_teams(drivers, constructors, max_subs=3):
     """
     Returns a list of all combinations of drivers and constructor that is within the budget
     and contains the given drivers and constructor as parameters.
@@ -49,6 +49,7 @@ def find_available_teams(drivers, constructors):
                         if none is given then all drivers are considered eligible.
         constructors:   If the list or tuple of constructors is empty, then all constructors are considered. If non empty,
                         all teams are combined with all the constructors given in this list.
+        max_subs:       Maximum number of subs from current team for a team to be in the available list.
     Returns:
         A list of all available teams given the information from arguments.
     """
@@ -74,7 +75,7 @@ def find_available_teams(drivers, constructors):
     for team_combination in all_team_combinations:
         # If a possible subset is a subset of a team combination, and the team combination is within the budget, append to available teams
         for subset in all_subsets:
-            if set(subset).issubset(team_combination) and calculate_price(team_combination) <= CURRENT_BUDGET:
+            if set(subset).issubset(team_combination) and calculate_price(team_combination) <= CURRENT_BUDGET and calculate_subs(team_combination) <= max_subs:
                 available_teams.append(team_combination + (calculate_price(team_combination), calculate_points(team_combination), calculate_subs(team_combination)))
 
     return available_teams
@@ -123,4 +124,4 @@ def print_top_constructor_value(reverse=True):
         print(f"{position+1}. | {constructor[0]} | ${constructor[1]}M | {constructor[2]} points | {constructor[3]} points per $M")
 
 
-print_teams(sort_by_points(find_available_teams(("PER", "SAI", "BOT",), ("RB",))))
+print_teams(sort_by_points(find_available_teams(("VER", "SAI"), ("RB",), max_subs=3)))
