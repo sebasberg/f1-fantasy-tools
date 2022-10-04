@@ -1,3 +1,4 @@
+A simple to-do list for this project (features I plan to implement in the future)
 - add support for must_be_included_drivers and blacklisted_drivers and blacklisted_constructors in find_teams function
 - create own python file for classes handling different stuff and let the main.py (or other name for main.py) import classes that is handling different functionality and data storing
 - set up database so that it can store different/more data from fantasy (ER diagram and improve database design) (save data from each race, save user specific data etc.)
